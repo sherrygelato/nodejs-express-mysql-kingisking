@@ -6,6 +6,9 @@
 var express = require('express');
 var router = express.Router();
 
+// mysql setting
+const mysql = require('../mysql/db.js');
+
 /*
 routing 매핑 시 : client의 url과 http method를 사용한다. 
 Get 조회 : router.get()
@@ -35,6 +38,13 @@ res.sendfile() : file 다운로드
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
+});
+
+router.get('/mysql', function (req, res, next) {
+  mysql.query('SELECT * from Users', (error, rows) => {
+    console.log('id/pw: ', rows);
+    res.send(rows);
+  });
 });
 
 router.get('/se/:id', function(req, res) {

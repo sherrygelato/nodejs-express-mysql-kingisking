@@ -11,6 +11,10 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+/* connect mysql */
+var mysqlDB = require('./mysql/db');
+mysqlDB.connect();
+
 var app = express(); // entry point(진입점)
 // express 패키지를 호출하여 app 변수 객체를 만들었다.
 // 이 객체에 기능을 하나씩 연결한다.
